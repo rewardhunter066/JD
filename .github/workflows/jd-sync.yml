@@ -1,4 +1,4 @@
-name: ziye-sync
+name: jd-sync
 on:
   schedule:
     - cron: '1 12,23 * * *'
