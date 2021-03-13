@@ -1,7 +1,7 @@
 name: jd-sync
 on:
   schedule:
-    - cron: '1 12,23 * * *'
+    - cron: '1 23 * * *'
   workflow_dispatch:
   watch:
     types: started
