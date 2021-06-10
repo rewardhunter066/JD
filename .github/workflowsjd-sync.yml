@@ -1,0 +1,38 @@
+## 其他作者库同理  替换如下    
+ 
+## 作者名         ziye888 
+## 作者库名       JavaScript     
+## 作者分支名     main     
+## 同步分支名     ZIYE   （可自定义 ）
+
+
+
+
+name: jd-sync
+on:
+  schedule:
+    - cron: '1 12,23 * * 6'
+  workflow_dispatch:
+  watch:
+    types: started
+  repository_dispatch:
+    types: jd-JavaScript
+jobs:
+  repo-sync:
+    env:
+      PAT: ${{ secrets.PAT }} 
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: sync jd-JavaScript
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/Aoyt520/jd_scripts.git"
+          source_branch: "master"
+          destination_branch: "master"
+          github_token: ${{ secrets.PAT }}
